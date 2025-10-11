@@ -1,0 +1,46 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userName String @unique
+  firstName String
+  lastName String
+  email String @unique
+  password String
+  role String
+  refreshToken String?
+  isActive Boolean @default(true)
+  profilePicture String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+// Relations
+  instructorProfile Instructor_Profile?
+}
+
+
+model Instructor_Profile {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  instructorId String @unique @db.ObjectId
+  instructor User @relation(fields: [instructorId], references: [id])
+  bio String?
+  introductionVideo String?
+  expertise String[]
+  country String?
+  socialLinks Json?
+  timezone String?
+  isVerified Boolean @default(false)
+  teachingLanguages String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
