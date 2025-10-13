@@ -9,6 +9,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  INSTRUCTOR
+  STUDENT
+}
 
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -16,10 +21,13 @@ model User {
   firstName String
   lastName String
   email String @unique
+  isEmailVerified Boolean @default(false)
   password String
-  role String
+  role Role @default(STUDENT)
   refreshToken String?
-  isActive Boolean @default(true)
+  tokenFamily String? // for rotation detection
+  tokenVersion Int @default(0)
+  isActive Boolean @default(false)
   profilePicture String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -28,19 +36,35 @@ model User {
   instructorProfile Instructor_Profile?
 }
 
+type Education {
+  title String
+  description String
+  startYear Int
+  endYear Int
+}
 
+
+type Experience {
+  title String
+  company String
+  description String
+  startYear Int
+  endYear Int
+}
 model Instructor_Profile {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  instructorId String @unique @db.ObjectId
   instructor User @relation(fields: [instructorId], references: [id])
-  bio String?
+  instructorId String @unique @db.ObjectId
   introductionVideo String?
-  expertise String[]
   country String?
-  socialLinks Json?
   timezone String?
   isVerified Boolean @default(false)
   teachingLanguages String[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  headline String?
+  bio String?
+  socialLinks Json?
+  education Education[]
+  experience Experience[]
 }
+
+
