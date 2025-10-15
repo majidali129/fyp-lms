@@ -31,12 +31,12 @@ export const loginUser = async (_initialState: ActionState, formData: FormData) 
         const tokenPayload: AccessTokenPayload = {role: user.role as UserRole, userId: user.id, email: user.email, type: 'access'}
         const accessToken = await generateAccessToken(tokenPayload);
         const tokenFamily = await generateTokenFamily()
-        const refreshToken = await generateRefreshToken(user.id, tokenFamily);
+        const {token:refreshToken} = await generateRefreshToken(user.id, tokenFamily);
         
 
-        await prisma.user.update({where: {email}, data: {refreshToken: refreshToken.token, isActive: true}})
+        await prisma.user.update({where: {email}, data: {refreshToken, isActive: true}})
 
-        await setAuthCookies(accessToken, refreshToken.token)
+        await setAuthCookies(accessToken, refreshToken)
     } catch (error) {
         console.error('Login error:',error)
         return fromErrorToActionState(error, formData)

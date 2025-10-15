@@ -11,7 +11,7 @@ export type ActionState<T=unknown> = {
 }
 
 
-export const Empty_Initial_State: ActionState = {
+export const Initial_Empty_State: ActionState = {
      message: "",
      fieldErrors: {},
      payload: undefined,
@@ -19,13 +19,13 @@ export const Empty_Initial_State: ActionState = {
 };
 
 
-export const fromErrorToActionState = (error: unknown, FormData?: FormData): ActionState => {
+export const fromErrorToActionState = (error: unknown, formData?: FormData): ActionState => {
     if(error instanceof ZodError) {
         return {
             status: "ERROR",
             message: "",
-            fieldErrors: z.treeifyError(error),
-            payload: FormData,
+            fieldErrors: error.flatten().fieldErrors,
+            payload: formData,
             timestamp: Date.now(),
         };
     }
@@ -34,14 +34,14 @@ export const fromErrorToActionState = (error: unknown, FormData?: FormData): Act
                 status: 'ERROR',
                 message: error.message,
                 fieldErrors: {},
-                payload: FormData,
+                payload: formData,
                 timestamp: Date.now(),
             };
         }else return {
             status: 'ERROR',
             message: "Unknown error occured",
             fieldErrors: {},
-            payload: FormData,
+            payload: formData,
             timestamp: Date.now(),
         }
 };

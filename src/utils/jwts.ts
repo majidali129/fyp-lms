@@ -4,7 +4,7 @@ import { randomBytes } from 'crypto';
 import { SignJWT, jwtVerify } from 'jose'
 import * as jose from 'jose';
 import { cookies } from 'next/headers';
-import { InvalidSignatureError, MalformedTokenError, TokenClaimValidationError, TokenExpiredError, TokenVerificationError } from './jwt-errors';
+import { InvalidSignatureError, MalformedTokenError, TokenExpiredError, TokenVerificationError } from './jwt-errors';
 
 
 // ============================================================================
