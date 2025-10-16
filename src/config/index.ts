@@ -1,6 +1,6 @@
 
 
-export const config = {
+export const config = Object.freeze({
     DATABASE_URL:process.env.DATABASE_URL!,
     NODE_ENV:process.env.NODE_ENV!,
     ACCESS_TOKEN_SECRET:process.env.ACCESS_TOKEN_SECRET!,
@@ -11,4 +11,4 @@ export const config = {
     JWT_AUDIENCE:process.env.JWT_AUDIENCE!,
     DEFAULT_RESPONSE_LIMIT:process.env.DEFAULT_RESPONSE_LIMIT!,
     DEFAULT_RESPONSE_OFFSET:process.env.DEFAULT_RESPONSE_OFFSET!,
-}
+});
