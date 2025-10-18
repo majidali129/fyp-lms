@@ -9,7 +9,7 @@ import {
   verifyRefreshToken,
 } from "@/utils/jwts";
 
-export default async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const refreshToken = await getRefreshToken();
 
@@ -85,12 +85,13 @@ export default async function POST(req: NextRequest, res: NextResponse) {
       path: "/",
     });
 
-    return response;
+    return response
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json({ error: error.message }, { status: 401 });
     }
 
     console.log("Error in /api/auth/refresh:", error);
+    return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
   }
 }
