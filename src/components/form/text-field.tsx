@@ -93,7 +93,7 @@ export const TextField = memo(
           </Label>
         )}
         {renderInput()}
-        <ErrorField actionState={actionState!} name={name} />
+        <ErrorField actionState={actionState} name={name} />
       </div>
     );
   }

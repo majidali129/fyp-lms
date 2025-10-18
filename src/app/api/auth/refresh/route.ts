@@ -1,4 +1,3 @@
-import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
@@ -9,7 +8,7 @@ import {
   verifyRefreshToken,
 } from "@/utils/jwts";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST() {
   try {
     const refreshToken = await getRefreshToken();
 
@@ -85,7 +84,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       path: "/",
     });
 
-    return response
+    return response;
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json({ error: error.message }, { status: 401 });
