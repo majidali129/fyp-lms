@@ -1,8 +1,3 @@
-
-
-
 export const BreadCrumbs = () => {
-    return(
-        <div>Bread crumbs</div>
-    )
-}
+  return <div>Bread crumbs</div>;
+};

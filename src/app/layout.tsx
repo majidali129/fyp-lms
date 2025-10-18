@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -24,12 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" >
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        <Toaster closeButton invert richColors expand theme="system"  position="top-right" />
+        <Toaster closeButton expand invert richColors position="top-right" theme="system" />
       </body>
     </html>
   );

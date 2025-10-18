@@ -1,9 +1,3 @@
-
-
 export const InstructorFooter = () => {
-    return (
-        <footer>
-            Footer
-        </footer>
-    )
-}
+  return <footer>Footer</footer>;
+};

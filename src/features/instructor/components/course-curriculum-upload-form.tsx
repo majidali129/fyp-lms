@@ -1,5 +1,3 @@
 export const CourseCurriculumUploadForm = () => {
-    return (
-        <div>Curriculum upload form</div>
-    )
-}
+  return <div>Curriculum upload form</div>;
+};

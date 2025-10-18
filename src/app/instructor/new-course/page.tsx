@@ -1,8 +1,3 @@
-
-
-export default async function CreateNewCoursePage () {
-
-    return (
-        <div>Create New Course Page</div>
-    )
+export default async function CreateNewCoursePage() {
+  return <div>Create New Course Page</div>;
 }

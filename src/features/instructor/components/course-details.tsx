@@ -1,5 +1,3 @@
 export const InstructorCourseDetails = () => {
-    return (
-        <div>Instructor course details!</div>
-    )
-}
+  return <div>Instructor course details!</div>;
+};

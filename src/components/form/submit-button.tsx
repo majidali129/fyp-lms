@@ -1,23 +1,23 @@
-'use client'
+"use client";
+import { Loader } from "lucide-react";
+import type { ReactElement } from "react";
+import { cloneElement } from "react";
 import { useFormStatus } from "react-dom";
-import { Button } from "../ui/button";
-import { Loader, } from "lucide-react";
-import { cloneElement, ReactElement } from "react";
 
+import { Button } from "../ui/button";
 
 type SubmitButtonProps = {
-    label: string;
-    icon?: ReactElement<{ className: string }>
-}
+  label: string;
+  icon?: ReactElement<{ className: string }>;
+};
 export const SubmitButton = ({ label, icon }: SubmitButtonProps) => {
-    const { pending } = useFormStatus()
+  const { pending } = useFormStatus();
 
-
-    return (
-        <Button type="submit" disabled={pending} >
-            {pending ? 'Wait' : label}
-            {pending && <Loader className="w-4 h-4 animate-spin repeat-infinite" />}
-            {icon && !pending && cloneElement(icon, { className: 'w-4 h-4' })}
-        </Button>
-    )
-} 
+  return (
+    <Button disabled={pending} type="submit">
+      {pending ? "Wait" : label}
+      {pending && <Loader className="w-4 h-4 animate-spin repeat-infinite" />}
+      {icon && !pending && cloneElement(icon, { className: "w-4 h-4" })}
+    </Button>
+  );
+};

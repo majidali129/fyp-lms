@@ -1,7 +1,3 @@
-
-
 export const DialogShell = () => {
-    return (
-        <div>Reusable dialog</div>
-    )
-}
+  return <div>Reusable dialog</div>;
+};

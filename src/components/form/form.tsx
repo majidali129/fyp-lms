@@ -1,6 +1,7 @@
 import { toast } from "sonner";
-import { ActionState } from "./utils/to-action-state";
+
 import { useActionFeedback } from "./hooks/use-actions-feedback";
+import type { ActionState } from "./utils/to-action-state";
 
 type FormProps = {
   action: (payload: FormData) => void;
@@ -23,7 +24,7 @@ const Form = ({ action, children, actionState, onSuccess, onError }: FormProps) 
   });
 
   return (
-    <form action={action}  className="space-y-3">
+    <form action={action} className="space-y-3">
       {children}
     </form>
   );
