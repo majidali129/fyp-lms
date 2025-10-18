@@ -32,6 +32,7 @@ rules: {
  // React specific
       "react/self-closing-comp": "error",
       "react/no-unused-prop-types": "error",
+      'react/prop-types': 'error',
       "react/jsx-sort-props": ["error", {
         "callbacksLast": true,
         "shorthandFirst": true,
